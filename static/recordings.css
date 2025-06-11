@@ -1,0 +1,100 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+.navbar {
+    background-color: #333;
+    overflow: hidden;
+}
+
+.navbar a {
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 20px;
+    text-decoration: none;
+}
+
+.navbar a.logo {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.navbar a.youtube-logo img {
+    height: 24px;
+    vertical-align: middle;
+}
+
+.container {
+    padding: 20px;
+    max-width: 1100px;
+    margin: auto;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 30px;
+    border-radius: 10px;
+}
+
+h1, h2 {
+    color: #333;
+}
+
+.recording-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.recording-item {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.file-list {
+    list-style-type: none;
+    padding: 0;
+    margin-top: 10px;
+}
+
+.file-item {
+    margin-bottom: 5px;
+    position: relative;
+}
+
+.file-item a {
+    color: #333;
+    text-decoration: none;
+    transition: color 0.3s;
+    display: flex;
+    align-items: center;
+}
+
+.file-item a:hover {
+    color: #007BFF;
+}
+
+.thumbnail {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.video-preview {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 60px;
+    width: 200px;
+    height: 112px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    z-index: 10;
+}

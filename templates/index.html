@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transcript Proofreading</title>
+    <!-- Link to external CSS file for styling -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <!-- Navigation bar -->
+    <div class="navbar">
+        <!-- Logo for the application -->
+        <a href="/" class="logo">HodgePodge</a>
+        <!-- Link to the YouTube summary feature -->
+        <a href="/zoom-login" class="youtube-logo">
+            <img src="{{ url_for('static', filename='zoom.png') }}" alt="Zoom Logo">
+        </a>
+        <a href="/youtube" class="youtube-logo">
+            <img src="{{ url_for('static', filename='youtube-logo.png') }}" alt="YouTube Logo">
+        </a>
+    </div>
+    <!-- Main container for content -->
+    <div class="container">
+        <h1>Upload Transcript for Proofreading</h1>
+        <!-- Form container -->
+        <div class="form-container">
+            <!-- Form to upload a transcript file -->
+            <form action="/upload" method="post" enctype="multipart/form-data">
+                <!-- File upload block -->
+                <div class="file-upload-block">
+                    <!-- Label for file input -->
+                    <label for="transcript" class="file-label" id="file-label">
+                        Choose File
+                    </label>
+                    <!-- File input element -->
+                    <input type="file" id="transcript" name="transcript" required onchange="updateFileName()">
+                    <!-- Submit button -->
+                    <button type="submit">Upload</button>
+                </div>
+            </form>
+        </div>
+        <!-- Display proofread transcript if available -->
+        {% if proofread %}
+            <div class="transcripts-container">
+                <!-- Block for proofread transcript -->
+                <div class="transcript-block">
+                    <h2>Proofread Transcript</h2>
+                    <div class="proofread-transcript">
+                        <pre>{{ proofread | safe }}</pre>
+                    </div>
+                </div>
+                <!-- Block for original transcript -->
+                <div class="transcript-block">
+                    <h2>Original Transcript</h2>
+                    <div class="original-transcript">
+                        <pre>{{ original }}</pre>
+                    </div>
+                </div>
+            </div>
+        <!-- Display error message if there's an error -->
+        {% elif error %}
+            <h2>Error</h2>
+            <div class="error-message">
+                <p>{{ error }}</p>
+            </div>
+        {% endif %}
+    </div>
+    <!-- JavaScript to update file label and handle form submission -->
+    <script>
+        // Function to update the file label with the selected file name
+        function updateFileName() {
+            const input = document.getElementById('transcript');
+            const fileLabel = document.getElementById('file-label');
+            if (input.files.length > 0) {
+                fileLabel.textContent = input.files[0].name;
+            } else {
+                fileLabel.textContent = 'Choose File';
+            }
+        }
+        // Change submit button text to 'Uploading...' when form is submitted
+        const form = document.querySelector('form');
+        const submitButton = form.querySelector('button[type="submit"]');
+        form.addEventListener('submit', () => {
+            submitButton.textContent = 'Uploading...';
+            submitButton.disabled = true;
+        });
+    </script>
+</body>
+</html>

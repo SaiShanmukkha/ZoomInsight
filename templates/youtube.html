@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Summarizer</title>
+    <!-- Link to external CSS files for styling -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='youtube-styles.css') }}">
+    <!-- jQuery library -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Event listener for the send button click
+            $('#send-button').click(function() {
+                var youtubeUrl = $('#search-input').val(); // Get YouTube URL from input
+                var language = $('#language-select').val(); // Get selected language
+                // AJAX request to send data to the server
+                $.ajax({
+                    url: '/youtube',
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify({ youtube_url: youtubeUrl, language: language }),
+                    success: function(response) {
+                        if (response.error) {
+                            // Display error message if there is an error
+                            $('#transcript-container').html('<div class="error-message">' + response.error + '</div>');
+                        } else {
+                            // Display the transcript and summary if request is successful
+                            $('#transcript-container').html('<h2>English Transcript</h2><div class="transcript-text">' + response.transcript + '</div>');
+                            $('#summary-container').html('<h2>Summary</h2><div class="summary-text">' + response.summary + '</div>');
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <!-- Navigation bar -->
+    <div class="navbar">
+        <!-- Logo and link to home page -->
+        <a href="/" class="logo">HodgePodge</a>
+        <!-- Link to YouTube Summarizer page -->
+        <a href="/youtube" class="logo">YouTube Summarizer</a>
+    </div>
+    <!-- Search block for YouTube URL and language selection -->
+    <div class="search-block">
+        <button class="youtube-logo-button">
+            <!-- YouTube logo button -->
+            <img src="{{ url_for('static', filename='youtube-logo.png') }}" alt="YouTube Logo">
+        </button>
+        <!-- Input field for YouTube URL -->
+        <input type="text" id="search-input" placeholder="Paste YouTube URL here">
+        <!-- Dropdown menu for language selection -->
+        <select id="language-select">
+            <option value="en">English</option>
+            <option value="zh-Hans">Chinese (Simplified)</option>
+            <!-- Add more language options as needed -->
+        </select>
+        <!-- Send button to submit the form -->
+        <button id="send-button" class="send-icon-button">
+            <img src="{{ url_for('static', filename='send-icon.png') }}" alt="Send Icon">
+        </button>
+    </div>
+    <!-- Container for displaying content -->
+    <div class="content-container">
+        <!-- Container for displaying the transcript -->
+        <div id="transcript-container" class="transcript-container">
+            <!-- The transcript will be displayed here -->
+        </div>
+        <!-- Container for displaying the summary -->
+        <div id="summary-container" class="summary-container">
+            <!-- The summary will be displayed here -->
+        </div>
+    </div>
+</body>
+</html>

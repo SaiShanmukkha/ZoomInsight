@@ -1,0 +1,102 @@
+/* Styles for the Zoom Recordings Gallery */
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: center;
+}
+
+.gallery-item {
+    flex: 1 1 calc(33.333% - 16px);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 16px;
+    background-color: #fff;
+    transition: transform 0.2s ease-in-out;
+}
+
+.gallery-item:hover {
+    transform: scale(1.05);
+}
+
+.gallery-item img {
+    width: 100%;
+    max-width: 200px; /* Adjust this value as needed */
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.gallery-item p {
+    margin: 8px 0;
+    text-align: center;
+    font-size: 16px;
+    color: #333;
+    font-family: 'Arial', sans-serif;
+}
+
+.gallery-item .info {
+    text-align: left;
+    font-size: 14px;
+    color: #555;
+    font-family: 'Arial', sans-serif;
+    width: 100%;
+}
+
+.gallery-item .info p {
+    margin: 4px 0;
+}
+
+.gallery-item .info a {
+    color: #007BFF;
+    text-decoration: none;
+}
+
+.gallery-item .info a:hover {
+    text-decoration: underline;
+}
+
+/* Styles for the navbar (reused from styles.css) */
+.navbar {
+    background-color: #333;
+    overflow: hidden;
+}
+
+.navbar a {
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 20px;
+    text-decoration: none;
+}
+
+.navbar a.logo {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.navbar a.youtube-logo img {
+    height: 24px;
+    vertical-align: middle;
+}
+
+/* Container styles (reused from styles.css) */
+.container {
+    padding: 20px;
+    max-width: 1100px;
+    margin: auto;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 30px;
+    border-radius: 10px;
+}
+
+h1 {
+    color: #333;
+    font-family: 'Arial', sans-serif;
+}
